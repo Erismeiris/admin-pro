@@ -13,8 +13,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 
 
 const routes: Routes = [
-    { path: 'dashboard',         component: PagesComponent,
-    canActivate: [AuthGuard],
+    { path: 'dashboard',         component: PagesComponent, /* canActivate: [AuthGuard] */  
     children: [
       { path: '', component: DashboardComponent, data: {title:'Dashboard'} },
       { path: 'progress',  component: ProgressComponent, data: {title:'ProgressBar'} },
