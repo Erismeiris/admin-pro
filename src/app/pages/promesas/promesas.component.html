@@ -1,1 +1,18 @@
 <p>promesas works!</p>
+
+<!--Mostrar tarjetas con los datos de todos los usuarios-->
+<div class="row align-items-start">
+<div *ngFor="let user of users" class="col border">
+  <div>
+    <h2>{{user.first_name}} {{user.last_name}}</h2>   
+    <p>{{user.email}}</p>
+   <img src="{{user.avatar}}" alt="">
+    <!-- <button (click)="borrarUsuario(user.id)">Borrar</button>
+    <button (click)="editarUsuario(user)">Editar</button> -->
+  </div>
+</div>
+</div>
+
+
+
+<!--Agregar un nuevo usuario-->

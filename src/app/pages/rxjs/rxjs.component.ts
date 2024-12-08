@@ -6,15 +6,35 @@ import { retry, take, map, filter } from 'rxjs/operators';
   selector: 'app-rxjs',
   templateUrl: './rxjs.component.html',
   styles: [
+    `.contenedor {
+        width: 50%;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      };
+      `,
+    `     
+     .digital-watch {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 4em;
+      color: #333;
+      background-color: #f0f0f0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      display: inline-block;
+  };`
+
   ]
 })
 export class RxjsComponent implements OnDestroy {
 
-  public intervalSubs: Subscription;
+  public intervalSubs!: Subscription;
 
 
-  constructor() {
-    
+  constructor() {   
 
     // this.retornaObservable().pipe(
     //   retry(2)
@@ -23,7 +43,8 @@ export class RxjsComponent implements OnDestroy {
     //   error => console.warn('Error:', error ),
     //   () => console.info('Obs terminado')
     // );
-    this.intervalSubs = this.retornaIntervalo().subscribe( console.log )
+    /* this.intervalSubs = this.retornaIntervalo().subscribe( console.log ) */
+    this.startClock();
 
   }
   
@@ -65,6 +86,22 @@ export class RxjsComponent implements OnDestroy {
 
     });
 
+  }
+
+  startClock(): void {
+    setInterval(() => {
+      const now = new Date();
+      const hours = this.padZero(now.getHours());
+      const minutes = this.padZero(now.getMinutes());
+      const seconds = this.padZero(now.getSeconds());
+
+      document.getElementById('hours')!.textContent = hours;
+      document.getElementById('minutes')!.textContent = minutes;
+      document.getElementById('seconds')!.textContent = seconds;
+    }, 1000);
+  }
+  padZero(num: number): string {
+    return num < 10 ? '0' + num : num.toString();
   }
 
 }

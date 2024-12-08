@@ -3,17 +3,35 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-promesas',
   templateUrl: './promesas.component.html',
-  styles: [
+  styles: [    
+    // Your styles here
+    `
+    .col {
+      text-align: left;
+      background-color: #f2f2f2;
+      border: 1px solid black;
+      border-radius:5%;
+      padding: 10px;
+      color: black;
+    }
+  `
+    
   ]
 })
 export class PromesasComponent implements OnInit {
 
   constructor() { }
 
+  public users: any;
+
   ngOnInit(): void {
 
     this.getUsuarios().then( usuarios => {
-      console.log(usuarios);
+
+      if(usuarios) {
+        this.users = usuarios;
+      } 
+      
     })
 
   
