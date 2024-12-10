@@ -43,7 +43,7 @@ export class RxjsComponent implements OnDestroy {
     //   error => console.warn('Error:', error ),
     //   () => console.info('Obs terminado')
     // );
-    /* this.intervalSubs = this.retornaIntervalo().subscribe( console.log ) */
+    this.intervalSubs = this.retornaIntervalo().subscribe( console.log ) 
     this.startClock();
 
   }
@@ -56,9 +56,9 @@ export class RxjsComponent implements OnDestroy {
 
     return interval(100)
             .pipe(
-              // take(10),
-              map( valor => valor + 1), // 0 => 1
-              filter( valor => ( valor % 2 === 0 ) ? true : false ),
+              take(10), // Función del Take es tomar cantidad de valores emitidos
+              map( valor => valor + 1), // 0 => 1 Función del Map le aplica cambiuos a cada valor emitido
+              filter( valor => ( valor % 2 === 0 ) ? true : false ), // 1 => 2 Función del Filter filtra los valores emitidos
             );
   }
 
